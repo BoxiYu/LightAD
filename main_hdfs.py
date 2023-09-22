@@ -39,8 +39,7 @@ for i in range(data_len):
     y_train_arr.append(data["y_train"])
     x_test_arr.append(data["x_test"])
     y_test_arr.append(data["y_test"])
-    #print(x_train_arr.shape)
-#x_train_arr, x_test_arr, y_train_arr, y_test_arr = load.reload_data(shuffled=True)
+
 
 
 
@@ -101,8 +100,8 @@ for i in range(data_len):
 
 
 print("Current Model:",model+";","Precision:",np.mean(p_all),"Recall:",np.mean(r_all),"F1-score:",np.mean(f_all), "Specificity:", np.mean(s_all), "Balanced Acc:", np.mean(b_all))
-print(sum(time_train_all)/5)
-print(sum(time_infer_all)/5)
+print(f"Train time: {sum(time_train_all)/5}")
+print(f"Inference time: {sum(time_infer_all)/5}")
 
 
 

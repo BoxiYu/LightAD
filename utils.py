@@ -8,15 +8,15 @@ class load_data:
     def __init__(self, dataset, eliminated=False):
         self.dataset = dataset
         self.eliminated = eliminated
-        self.path_original = __file__.replace("utils.py","original_datasets/"+dataset)
+        self.path_original = __file__.replace("utils.py","datasets/original_datasets/"+dataset)
 
         if dataset == 'hdfs':
-            self.path_original_label = __file__.replace("utils.py","original_datasets/anomaly_label.csv")
+            self.path_original_label = __file__.replace("utils.py","datasets/original_datasets/anomaly_label.csv")
     
         if self.eliminated:
-            self.path = __file__.replace("utils.py","splited_datasets/"+dataset+"_eli")
+            self.path = __file__.replace("utils.py","datasets/splited_datasets/"+dataset+"_eli")
         else:
-            self.path = __file__.replace("utils.py","splited_datasets/"+dataset)
+            self.path = __file__.replace("utils.py","datasets/splited_datasets/"+dataset)
         print(self.path)
 
 
@@ -152,6 +152,8 @@ class load_data:
             total_time += (end_time-start_time)
             print("Total preprocessing time is:",total_time)
             print(t, len(x_train))
+            if not os.path.exists(self.path):
+                os.mkdir(self.path)
             np.savez(os.path.join(self.path,"shuffle_"+str(t)+".npz"), x_train=x_train, x_test=x_test, y_train=y_train, y_test=y_test)
 
     def load_and_split(self, preprocess=True, data_range=[0,10000000], train_ratio=0.8,  window_size=1, step_size=1):
@@ -167,9 +169,9 @@ class load_data:
         error_types = []
         total_time = 0
 
-        while True:
-            try:
-                line = f.readline()
+        lines = line = f.readlines()
+        for idx, line in enumerate(lines):
+            try:  
                 if count < data_range[0]:
                     count += 1
                     continue
@@ -223,7 +225,7 @@ class load_data:
                 count += 1
                 if count % 500000 == 0:
                     print("Data pre_loading:",count-data_range[0],"/",data_range[1]-data_range[0])
-                if count == data_range[1]:
+                if count == data_range[1] or idx == len(lines)-1:
                     print("Number of error types in current data:", error_count)
                     print("Error types in current data:", error_types)
                     print("Their first occurences are:", first_occurences)
@@ -238,6 +240,8 @@ class load_data:
         train_size = int(train_ratio*len(total_data_window))
         x_train, x_test, y_train, y_test = total_data_window[:train_size], total_data_window[train_size:],\
             total_label_window[:train_size], total_label_window[train_size:]
+        if not os.path.exists(self.path):
+            os.mkdir(self.path)
         np.savez(os.path.join(self.path,"unshuffle.npz"),x_train=x_train, x_test=x_test, y_train=y_train, y_test=y_test)
     
 
