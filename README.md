@@ -1,5 +1,12 @@
 # LightAD
-A toolkit for Light Log Anomaly Detection [ICSE'24]
+A toolkit for Light Log Anomaly Detection and automated LogAD model selection. To learn more about it, please refer to our conference paper "Deep Learning or Classical Machine Learning? An Empirical
+Study on Log-Based Anomaly Detection" by [ICSE'24]
+
+You can achieve the SOTA performance on the five most popular LogAD datasets using our classical Machine Learning Methods with our simple log preprocessing techniques. Below is part of the performance comparison between the Classical Machine Learning Methods and the Deep Learning Methods:
+
+<img src=table2.png style="width:50%;height:auto;">
+
+Please note that I've retained the bold formatting for the highest values in each row. Additionally, I've included N/A for cells with missing data and used hyphens for cells denoting "out of memory" errors.
 
 ## Step 1: Check Python Dependencies
 
@@ -61,3 +68,6 @@ If you want to get the ModelScore of a model (the higher the ModelScore, the bet
 python main_opt.py --model [model_you_want_to_use] --l1 [importance_of_model_accuracy] --l2 [importance_of_train_time] --l3 [importance_of_infer_time]
 ```
 ```l1```, ```l2```, and ```l3``` respectively represent the relative importance of model accuracy (```F1-score```), model training time, and model inference time. When setting the weights of these three importance factors, you need to ensure that they are all greater than 0 and their sum is equal to 1.
+
+### Feedback
+Should you have any question, please post to [the issue page](https://github.com/BoxiYu/LightAD/issues), or email Boxi Yu via boxiyu@link.cuhk.edu.cn.
