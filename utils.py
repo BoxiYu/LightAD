@@ -213,7 +213,7 @@ class load_data:
                 if count >= window_size+data_range[0]-1 and (count-data_range[0]-window_size+1)%step_size==0:
                     temp_data = total_data[count-data_range[0]-window_size+1:count-data_range[0]+1]
 
-                    total_data_window.append(temp_data)
+                    total_data_window.append(temp_data[0])
 
                     if '+' in total_label[count-data_range[0]-window_size+1:count-data_range[0]+1]:
                         total_label_window.append("+")
