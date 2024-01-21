@@ -21,7 +21,7 @@ dataset = args.dataset
 
 
 load = load_data(dataset=dataset)
-x_train, x_test, y_train, y_test = load.reload_data(shuffled=False)
+x_train, x_test, y_train, y_test = load.reload_data()
 x_train, x_test, y_train, y_test = x_train[0], x_test[0], y_train[0], y_test[0]
 
 idx_list = np.random.choice(len(x_train), int(0.1*len(x_train)), replace=False)
