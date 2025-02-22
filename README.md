@@ -69,5 +69,24 @@ python main_opt.py --model [model_you_want_to_use] --l1 [importance_of_model_acc
 ```
 ```l1```, ```l2```, and ```l3``` respectively represent the relative importance of model accuracy (```F1-score```), model training time, and model inference time. When setting the weights of these three importance factors, you need to ensure that they are all greater than 0 and their sum is equal to 1.
 
-### Feedback
+## Citation
+If you find the code and models useful for your research, please cite the following paper:
+```
+@inproceedings{10.1145/3597503.3623308,
+author = {Yu, Boxi and Yao, Jiayi and Fu, Qiuai and Zhong, Zhiqing and Xie, Haotian and Wu, Yaoliang and Ma, Yuchi and He, Pinjia},
+title = {Deep Learning or Classical Machine Learning? An Empirical Study on Log-Based Anomaly Detection},
+year = {2024},
+isbn = {9798400702174},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3597503.3623308},
+doi = {10.1145/3597503.3623308},
+numpages = {13},
+keywords = {log analysis, anomaly detection, dataset, empirical study},
+location = {Lisbon, Portugal},
+series = {ICSE '24}
+}
+```
+
+## Feedback
 Should you have any question, please post to [the issue page](https://github.com/BoxiYu/LightAD/issues), or email Boxi Yu via boxiyu@link.cuhk.edu.cn.
